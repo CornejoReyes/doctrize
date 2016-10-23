@@ -1,8 +1,7 @@
-function sidebarController(settings) {
+function sidebarController() {
 
   var vm = this;
-  vm.appName = settings.appName;
-  vm.appVersion = settings.appVersion;
+
 
 }
 

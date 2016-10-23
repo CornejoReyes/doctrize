@@ -5,7 +5,7 @@ angular
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/general');
 
   $stateProvider
     .state('app', {
@@ -16,5 +16,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('dashboard', {
       url: '/',
       templateUrl: 'app/views/main.html',
+    })
+    .state('dashboard.general', {
+        url: 'general',
+        templateUrl: 'app/views/general.html'
+    })
+    .state('dashboard.pacientes', {
+        url: 'pacientes',
+        templateUrl: 'app/views/pacientes.html'
     });
 }

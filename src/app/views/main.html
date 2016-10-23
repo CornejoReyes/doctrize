@@ -1,8 +1,15 @@
+<nav-menu>
+    <nav-menu-item icon="fa-power-off"></nav-menu-item>
+    <nav-menu-item icon="fa-gear"></nav-menu-item>
+    <nav-menu-item icon="fa-envelope"></nav-menu-item>
+</nav-menu>
 <sidebar>
-    <sidebar-item name="Pacientes" icon="fa-user" state="prueba"></sidebar-item>
+    <sidebar-item name="Vista General" icon="fa-desktop" state="dashboard.general"></sidebar-item>
+    <sidebar-item name="Pacientes" icon="fa-user" state="dashboard.pacientes"></sidebar-item>
     <sidebar-item name="Citas" icon="fa-calendar" state="prueba"></sidebar-item>
     <sidebar-item name="Hospitales" icon="fa-h-square" state="prueba"></sidebar-item>
-    <sidebar-item name="Rendimiento" icon="fa-pie-chart" state="prueba"></sidebar-item>
-    <sidebar-item name="Configuracion" icon="fa-gear" state="prueba"></sidebar-item>
+    <sidebar-item name="Especialidades" icon="fa-certificate" state="prueba"></sidebar-item>
 </sidebar>
-<nav-menu></nav-menu>
+<div id="wrapper-container">
+    <div id="wrapper" ui-view></div>
+</div>

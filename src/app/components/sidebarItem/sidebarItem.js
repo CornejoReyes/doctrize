@@ -1,8 +1,6 @@
-function sidebarItemController() {
+function sidebarItemController($state) {
   var vm = this;
-  vm.$onInit = function() {
-
-  };
+  
 }
 
 angular
