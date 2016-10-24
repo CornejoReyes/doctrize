@@ -23,6 +23,12 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('dashboard.pacientes', {
         url: 'pacientes',
-        templateUrl: 'app/views/pacientes.html'
+        templateUrl: 'app/views/pacientes.html',
+        controller: 'pacienteCtrl as vm'
+    })
+    .state('dashboard.especialidad', {
+        url: 'especialidades',
+        templateUrl: 'app/views/especialidades.html',
+        controller: 'especialidadCtrl as vm'
     });
 }

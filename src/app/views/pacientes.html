@@ -1,117 +1,32 @@
 <div class="row margin-top">
-  <div class="col-md-6">
-    <widget>
-      Hola we
-    </widget>
-  </div>
-  <div class="col-md-6">
-    <widget>
-      Soy un col md 6
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
-</div>
-<div class="row margin-top">
-  <div class="col-md-12">
-    <widget>
-      Hello!
-    </widget>
-  </div>
+    <div class="col-md-12">
+        <widget>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido materno</th>
+                        <th>Edad</th>
+                        <th>Sexo</th>
+                        <th>Direccion</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="paciente in vm.pacientes">
+                        <td>{{paciente.id}}</td>
+                        <td>{{paciente.nombre}}</td>
+                        <td>{{paciente.apellido_paterno}}</td>
+                        <td>{{paciente.apellido_materno}}</td>
+                        <td>{{paciente.fecha_nacimiento | age}}</td>
+                        <td>{{paciente.sexo | sex}}</td>
+                        <td>{{paciente.calle + " " + paciente.colonia + ", " +paciente.municipio}}</td>
+                        <td>{{paciente.telefono}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </widget>
+    </div>
 </div>
