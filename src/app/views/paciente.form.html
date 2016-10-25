@@ -1,0 +1,88 @@
+<div class="row margin-top">
+	<div class="col-md-12">
+		<widget>
+			<div class="titulo">{{vm.titulo}}</div>
+			<form class="form-horizontal margin-top" name="form" novalidate>
+				<div class="form-group" ng-if="vm.paciente.id">
+					<label class="control-label col-md-3">Id</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.id">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Nombre</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.nombre">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Apellido paterno</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.apellido_paterno">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Appelido materno</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.apellido_materno">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Fecha de nacimiento</label>
+					<div class="col-md-9">
+						<div class="input-group">
+							<input type="text" uib-datepicker-popup ng-model="vm.paciente.fecha_nacimiento" datepicker-options="{maxDate: vm.maxDate}" show-weeks="false" ng-focus="vm.dpOpened = !vm.dpOpened" is-open="vm.dpOpened" show-button-bar="false" ng-required="true" name="event_date"
+											class="form-control">
+							<span class="input-group-btn">
+								<button class="btn btn-default" ng-click="!vm.dpOpened"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Sexo</label>
+					<div class="col-md-9">
+						<label class="radio-inline">
+							<input required type="radio" ng-model="vm.paciente.sexo" ng-value="1" name="sexo"> Masculino
+						</label>
+						<label class="radio-inline">
+							<input required type="radio" ng-model="vm.paciente.sexo" ng-value="0" name="sexo"> Femenino
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Teléfono</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.telefono">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Calle</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.calle">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Colonia</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.colonia">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Municipio</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.paciente.municipio">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-3">
+						<button ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-user"></i> Añadir</button>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-warning btn-block" ng-click="vm.clean()"><i class="fa fa-times"></i> Limpiar</button>
+					</div>
+				</div>
+			</form>
+		</widget>
+	</div>
+</div>

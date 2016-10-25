@@ -4,7 +4,7 @@ angular
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  //$locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/general');
 
   $stateProvider
@@ -25,6 +25,19 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         url: 'pacientes',
         templateUrl: 'app/views/pacientes.html',
         controller: 'pacienteCtrl as vm'
+    })
+    .state('dashboard.paciente-nuevo', {
+      url: 'pacientes/nuevo',
+      controller: 'pacienteFormCtrl as vm',
+      templateUrl: 'app/views/paciente.form.html',
+      data: {
+        titulo: 'Paciente > Nuevo'
+      }
+    })
+    .state('dashboard.paciente-editar', {
+      url: 'pacientes/{int:id}',
+      controller: 'pacienteFormCtrl as vm',
+      templateUrl: 'app/views/paciente.form.html'
     })
     .state('dashboard.especialidad', {
         url: 'especialidades',
