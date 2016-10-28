@@ -17,6 +17,7 @@ angular.module('app').controller('pacienteFormCtrl', function(paciente, $state, 
         paciente.get(id)
         .then(function(res){
             vm.paciente = res;
+            vm.paciente.fecha_nacimiento = moment(vm.paciente.fecha_nacimiento).toDate();
         });
     }
 

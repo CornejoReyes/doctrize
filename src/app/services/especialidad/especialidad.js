@@ -35,6 +35,18 @@ function Especialidad(API, $q, toastr) {
         return API.post(url,especialidad);
     };
 
+    me.update = function(especialidad){
+        return API.put(url + '/' + especialidad.id, especialidad);
+    };
+
+    me.save = function(especialidad){
+        if(especialidad.id){
+            return me.update(especialidad);
+        }else{
+            return me.create(especialidad);
+        }
+    };
+
 }
 
 angular.module('app')

@@ -6,7 +6,7 @@
 				<div class="form-group" ng-if="vm.especialidad.id">
 					<label class="control-label col-md-3">Id</label>
 					<div class="col-md-9">
-						<input required type="text" class="form-control" ng-model="vm.especialidad.id">
+						<input required type="text" class="form-control" ng-model="vm.especialidad.id" disabled>
 					</div>
 				</div>
 				<div class="form-group">
@@ -17,7 +17,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-3 col-md-3">
-						<button ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-user"></i> Añadir</button>
+						<button ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa" ng-class="vm.especialidad.id ? 'fa-refresh' : 'fa-user'"></i> {{vm.especialidad.id ? 'Actualizar':'Añadir'}}</button>
 					</div>
 					<div class="col-md-3">
 						<button class="btn btn-warning btn-block" ng-click="vm.clean()"><i class="fa fa-times"></i> Limpiar</button>

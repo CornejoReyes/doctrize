@@ -73,7 +73,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('dashboard.especialidad-editar', {
       url: 'especialidad/{id}',
-      controller: 'pacienteFormCtrl as vm',
+      controller: 'especialidadFormCtrl as vm',
       templateUrl: 'app/views/especialidades.form.html',
       data: {
         titulo: 'Especialidad > Editar'
