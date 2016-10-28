@@ -22,12 +22,20 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'app/views/general.html'
     })
     .state('dashboard.pacientes', {
-        url: 'pacientes',
+        url: 'paciente',
         templateUrl: 'app/views/pacientes.html',
-        controller: 'pacienteCtrl as vm'
+        controller: 'pacienteCtrl as vm',
+        resolve: {
+            _pacientes: function(paciente){
+                return paciente.getAll();
+            }
+        },
+        data: {
+            titulo: 'Pacientes'
+        }
     })
     .state('dashboard.paciente-nuevo', {
-      url: 'pacientes/nuevo',
+      url: 'paciente/nuevo',
       controller: 'pacienteFormCtrl as vm',
       templateUrl: 'app/views/paciente.form.html',
       data: {
@@ -35,13 +43,40 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       }
     })
     .state('dashboard.paciente-editar', {
-      url: 'pacientes/{int:id}',
+      url: 'paciente/{id}',
       controller: 'pacienteFormCtrl as vm',
-      templateUrl: 'app/views/paciente.form.html'
+      templateUrl: 'app/views/paciente.form.html',
+      data: {
+        titulo: 'Paciente > Editar'
+      }
     })
     .state('dashboard.especialidad', {
-        url: 'especialidades',
+        url: 'especialidad',
         templateUrl: 'app/views/especialidades.html',
-        controller: 'especialidadCtrl as vm'
+        controller: 'especialidadCtrl as vm',
+        resolve: {
+            _especialidades: function(especialidad){
+                return especialidad.getAll();
+            }
+        },
+        data: {
+            titulo: 'Especialidades'
+        }
+    })
+    .state('dashboard.especialidad-nuevo', {
+      url: 'especialidad/nuevo',
+      controller: 'especialidadFormCtrl as vm',
+      templateUrl: 'app/views/especialidades.form.html',
+      data: {
+        titulo: 'Especialidad > Nuevo'
+      }
+    })
+    .state('dashboard.especialidad-editar', {
+      url: 'especialidad/{id}',
+      controller: 'pacienteFormCtrl as vm',
+      templateUrl: 'app/views/especialidades.form.html',
+      data: {
+        titulo: 'Especialidad > Editar'
+      }
     });
 }

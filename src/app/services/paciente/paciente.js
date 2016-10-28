@@ -27,8 +27,31 @@ function Paciente(API, toastr,$q) {
         });
     };
 
+    me.get = function(id){
+        return API.get(url +'/' +id)
+        .then(function(res){
+            return $q.resolve(res.data.rows);
+        })
+        .catch(function(err){
+            toastr.error(err,'Error');
+            return $q.reject(err);
+        });
+    };
+
     me.create = function(obj){
         return API.post(url, obj);
+    };
+
+    me.update = function(obj){
+        return API.put(url + '/' + obj.id, obj);
+    };
+
+    me.save = function(obj){
+        if(obj.id){
+            return me.update(obj);
+        }else{
+            return me.create(obj);
+        }
     };
 
 }

@@ -1,7 +1,6 @@
 function Age() {
     function calculateAge(birthday) { // birthday is a date
         var ages = new Date(birthday);
-        console.log(ages.getTime());
          var ageDifMs = Date.now() - ages.getTime();
          var ageDate = new Date(ageDifMs); // miliseconds from epoch
          return Math.abs(ageDate.getUTCFullYear() - 1970);

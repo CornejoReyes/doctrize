@@ -1,7 +1,12 @@
 <div class="row margin-top">
 	<div class="col-md-12">
 		<widget>
-			<div class="titulo">{{vm.titulo}}</div>
+			<div class="titulo">
+				{{vm.titulo}}
+				<div class="tools">
+					<button class="btn btn-info btn-circle btn-sm" ui-sref="dashboard.pacientes"><i class="fa fa-list"></i> Lista</button>
+				</div>
+			</div>
 			<form class="form-horizontal margin-top" name="form" novalidate>
 				<div class="form-group" ng-if="vm.paciente.id">
 					<label class="control-label col-md-3">Id</label>
@@ -76,7 +81,8 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-3 col-md-3">
-						<button ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-user"></i> Añadir</button>
+						<button ng-if="!vm.paciente.id" ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-user"></i> Añadir</button>
+						<button ng-if="vm.paciente.id" ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-refresh"></i> Actualizar</button>
 					</div>
 					<div class="col-md-3">
 						<button class="btn btn-warning btn-block" ng-click="vm.clean()"><i class="fa fa-times"></i> Limpiar</button>

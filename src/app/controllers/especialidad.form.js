@@ -1,32 +1,29 @@
-angular.module('app').controller('pacienteFormCtrl', function(paciente, $state, toastr){
+angular.module('app').controller('especialidadFormCtrl', function(especialidad, $state, toastr){
 
     var vm = this;
     var id = $state.params.id;
     vm.titulo = $state.current.data.titulo;
-    vm.dpOpened = false;
-    vm.maxDate = moment();
     vm.save = save;
     vm.clean = clean;
 
-
+    console.log(id);
     if(id){
-        getPaciente(id);
+        getEspecialidad(id);
     }
 
-    function getPaciente(id){
-        paciente.get(id)
+    function getEspecialidad(id){
+        especialidad.get(id)
         .then(function(res){
-            vm.paciente = res;
+            vm.especialidad = res;
+            console.log(vm.especialidad);
         });
     }
 
     function save(){
-        paciente.save(vm.paciente)
+        especialidad.create(vm.especialidad)
         .then(function(res){
             toastr.success(res.data.msg, 'Éxito');
-            if(!vm.paciente.id){
-                vm.clear()
-            }
+            vm.clean();
         })
         .catch(function(err){
             toastr.error(err, 'Error');
@@ -34,7 +31,7 @@ angular.module('app').controller('pacienteFormCtrl', function(paciente, $state, 
     }
 
     function clean(){
-        vm.paciente = paciente.init();
+        vm.especialidad = especialidad.init();
     }
 
 });

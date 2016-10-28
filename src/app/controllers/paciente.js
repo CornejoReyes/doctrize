@@ -1,14 +1,15 @@
-angular.module('app').controller('pacienteCtrl',function(paciente){
+angular.module('app').controller('pacienteCtrl', function(paciente, _pacientes, $state) {
 
     var vm = this;
-    vm.pacientes = [];
-    getPacientes();
+    vm.pacientes = _pacientes;
+    vm.titulo = $state.current.data.titulo;
+    vm.reload = getPacientes;
 
-    function getPacientes(){
+    function getPacientes() {
         paciente.getAll()
-        .then(function(res){
-            vm.pacientes = res;
-        });
+            .then(function(res) {
+                vm.pacientes = res;
+            });
     }
 
 });

@@ -1,21 +1,13 @@
-<div class="row margin-top">
+<div class="row margin-top animated bounceInDown">
     <div class="col-md-12">
         <widget>
-            <div class="row">
-                <div class="instrucciones col-md-2">Acciones</div>
-                <div class="col-md-4">
-                    <button ui-sref="dashboard.paciente-nuevo" type="button" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Agregar</button>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-success btn-block" ng-click="vm.check()"><i class="fa fa-refresh"></i> Actualizar</button>
-                </div>
-            </div>
-        </widget>
-    </div>
-</div>
-<div class="row margin-top">
-    <div class="col-md-12">
-        <widget>
+            <div class="titulo">
+				{{vm.titulo}}
+				<div class="tools">
+					<button class="btn btn-primary btn-circle btn-sm" ui-sref="dashboard.paciente-nuevo"><i class="fa fa-plus"></i> Añadir</button>
+					<button class="btn btn-success btn-circle btn-sm" ng-click="vm.reload()"><i class="fa fa-refresh"></i> Recargar</button>
+				</div>
+			</div>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>

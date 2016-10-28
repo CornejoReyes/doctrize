@@ -1,0 +1,8 @@
+<div class="widget-head" ng-if="$ctrl.visible-head">
+    <h2>{{$ctrl.title}}</h2>
+    <div class="widget-tools" ng-if="{{$ctrl.widget-tools}}">
+        <button class="close" ng-click="{{$parent.closeWidget()}}" ng-if="{{$ctrl.close-button}}">&times;</button>
+        <button class="btn btn-primary btn-xs btn-circle" ng-if="{{$ctrl.add-button}}" ui-sref="{{$ctrl.state}}"><i class="fa fa-plus"></i> {{$ctrl.add}}</button>
+        <button class="btn btn-success btn-xs btn-circle" ng-if="{{$ctrl.reload-button}}" ng-click="{{$ctrl.reload()}}"><i class="fa fa-refresh"></i> {{$ctrl.reload}}</button>
+    </div>
+</div>

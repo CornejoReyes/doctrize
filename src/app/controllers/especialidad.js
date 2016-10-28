@@ -1,8 +1,9 @@
-angular.module('app').controller('especialidadCtrl',function(especialidad){
+angular.module('app').controller('especialidadCtrl',function(especialidad, _especialidades, $state){
 
     var vm = this;
-    vm.especialidades = [];
-    getEspecialidades();
+    vm.especialidades = _especialidades;
+    vm.titulo = $state.current.data.titulo;
+    vm.reload = getEspecialidades;
 
     function getEspecialidades(){
         especialidad.getAll()
