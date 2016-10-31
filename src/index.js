@@ -2,8 +2,9 @@ angular.module('app', [
     'ui.router',
     'ui.bootstrap',
     'ngAnimate',
-    'toastr'
-]).config(function(toastrConfig){
+    'toastr',
+    'angular-locker'
+]).config(function(toastrConfig,lockerProvider){
     angular.extend(toastrConfig, {
         autoDismiss: false,
         containerId: 'toast-container',
@@ -14,4 +15,13 @@ angular.module('app', [
         preventOpenDuplicates: false,
         target: 'body'
     });
+
+    lockerProvider.defaults({
+        driver: 'local',
+        namespace: 'doctrize',
+        separator: '_',
+        eventsEnabled: true,
+        extend: {}
+    });
+
 });

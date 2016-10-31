@@ -5,13 +5,23 @@ angular
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   //$locationProvider.html5Mode(true).hashPrefix('!');
-  $urlRouterProvider.otherwise('/general');
+  $urlRouterProvider.otherwise('/principal');
 
   $stateProvider
     .state('app', {
       abstract: true,
       url: '',
       component: 'app'
+    })
+    .state('login', {
+        url: '/login',
+        templateUrl:'app/views/login.html',
+        controller: 'loginCtrl as vm'
+    })
+    .state('principal', {
+        url: '/principal',
+        controller: 'principalCtrl as vm',
+        templateUrl: 'app/views/principal.html'
     })
     .state('dashboard', {
       url: '/',
