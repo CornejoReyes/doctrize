@@ -7,13 +7,27 @@ function Session(API, locker, toastr, $q) {
         return API.post(url + '/login', user)
         .then(function(res){
             locker.put('user', user);
+            locker.put('loggedin', true);
             return $q.resolve(res.data);
         })
         .catch(function(err){
             toastr.error(err, 'Error');
             return $q.reject(err);
         });
-    }
+    };
+
+    me.logout = function(){
+        return API.post(url + '/logout')
+        .then(function(res){
+            toastr.info(res.data.msg, 'Sesion terminada');
+            locker.clean();
+        });
+    };
+
+    me.isLogged = function(){
+        var loged = locker.get('loggedin') || false;
+        return loged;
+    };
 
 }
 
