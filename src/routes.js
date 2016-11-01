@@ -23,6 +23,20 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'principalCtrl as vm',
             templateUrl: 'app/views/principal.html'
         })
+        .state('reserva', {
+            url: '/reserva',
+            templateUrl: 'app/views/reserva.html',
+            controller: 'citaFormCtrl as vm',
+            data: {
+                titulo: 'Haz una cita'
+            },
+            resolve: {
+                _doctores: function(doctor){
+                    return doctor.getAll();
+                }
+            },
+            loginRequired: false
+        })
         .state('dashboard', {
             url: '/',
             templateUrl: 'app/views/main.html',
@@ -95,6 +109,20 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: 'app/views/especialidades.form.html',
             data: {
                 titulo: 'Especialidad > Editar'
+            },
+            loginRequired: true
+        })
+        .state('dashboard.citas', {
+            url: 'citas',
+            templateUrl: 'app/views/citas.html',
+            controller: 'citaCtrl as vm',
+            data: {
+                titulo: 'Citas'
+            },
+            resolve: {
+                _citas: function(cita){
+                    return cita.getAll();
+                }
             },
             loginRequired: true
         });

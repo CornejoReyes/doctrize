@@ -1,0 +1,30 @@
+<div class="row margin-top margin-bottom animated bounceInDown">
+    <div class="col-md-12">
+        <widget>
+            <div class="titulo">
+                {{vm.titulo}}
+                <div class="tools">
+                    <button class="btn btn-success btn-circle btn-sm" ng-click="vm.reload()"><i class="fa fa-refresh"></i> Recargar</button>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered margin-top">
+                <thead>
+                    <tr>
+                        <th>No. Cita</th>
+                        <th>Paciente</th>
+                        <th>Comentario</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cita in vm.citas">
+                        <td>{{cita.id}}</td>
+                        <td>{{cita.paciente.nombre + ' ' + cita.paciente.apellido_paterno + ' ' + cita.paciente.apellido_materno}}</td>
+                        <td>{{cita.comentario}}</td>
+                        <td>{{cita.hora_programada}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </widget>
+    </div>
+</div>

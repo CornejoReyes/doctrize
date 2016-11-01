@@ -1,10 +1,10 @@
 <div class="pagina-principal">
-    <div class="titulo">
+    <div class="titulo animated bounceInLeft">
         <i class="fa fa-heartbeat"></i> {{vm.titulo}}
     </div>
-    <div class="seleccion">
+    <div class="seleccion animated bounceInRight">
         <button class="btn btn-primary btn-block" ng-click="vm.cita = !vm.cita" ng-if="!vm.cita"> Hacer una cita</button>
-        <div ng-form="form" ng-if="vm.cita">
+        <div ng-class="{'animated fadeIn': vm.cita}" ng-form="form" ng-if="vm.cita">
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>

@@ -3,7 +3,8 @@ angular.module('app', [
         'ui.bootstrap',
         'ngAnimate',
         'toastr',
-        'angular-locker'
+        'angular-locker',
+        'ui.select'
     ])
     .config(function(toastrConfig, lockerProvider) {
         angular.extend(toastrConfig, {
