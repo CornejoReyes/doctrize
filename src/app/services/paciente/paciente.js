@@ -1,4 +1,4 @@
-function Paciente(API, toastr,$q) {
+function Paciente(API, toastr,$q,locker) {
     var me = this;
     var url = 'paciente';
 
@@ -29,6 +29,18 @@ function Paciente(API, toastr,$q) {
 
     me.get = function(id){
         return API.get(url +'/' +id)
+        .then(function(res){
+            return $q.resolve(res.data.rows);
+        })
+        .catch(function(err){
+            toastr.error(err,'Error');
+            return $q.reject(err);
+        });
+    };
+
+    me.getCitas = function(){
+        var id = locker.get('user').id;
+        return API.get(url + '/' + id + '/citas')
         .then(function(res){
             return $q.resolve(res.data.rows);
         })

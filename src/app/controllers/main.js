@@ -9,5 +9,9 @@ angular.module('app').controller('mainCtrl', function($state, settings, session)
         });
     };
 
+    vm.doctor = function(){
+        return session.isDoctor();
+    };
+
 
 });

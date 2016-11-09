@@ -1,13 +1,19 @@
 <nav-menu>
     <nav-menu-item icon="fa-power-off" ng-click="vm.logout()"></nav-menu-item>
     <nav-menu-item icon="fa-gear"></nav-menu-item>
-    <nav-menu-item icon="fa-envelope"></nav-menu-item>
 </nav-menu>
 <sidebar>
-    <sidebar-item name="Vista General" icon="fa-desktop" state="dashboard.general"></sidebar-item>
-    <sidebar-item name="Citas" icon="fa-calendar" state="dashboard.citas"></sidebar-item>
-    <sidebar-item name="Pacientes" icon="fa-user" state="dashboard.pacientes"></sidebar-item>
-    <!--<sidebar-item name="Especialidades" icon="fa-certificate" state="dashboard.especialidad"></sidebar-item>-->
+    <!-- Sidebar de doctor, sólo los doctores pueden usar éste codigo -->
+    <sidebar-item ng-if="vm.doctor()" name="Vista General" icon="fa-desktop" state="dashboard.general"></sidebar-item>
+    <sidebar-item ng-if="vm.doctor()" name="Citas" icon="fa-calendar" state="dashboard.citas"></sidebar-item>
+    <sidebar-item ng-if="vm.doctor()" name="Pacientes" icon="fa-user" state="dashboard.pacientes"></sidebar-item>
+    <sidebar-item ng-if="vm.doctor()" name="Expedientes" icon="fa-list" state="dashboard.expediente"></sidebar-item>
+    <sidebar-item ng-if="vm.doctor()" name="Especialidades" icon="fa-certificate" state="dashboard.especialidad"></sidebar-item>
+    <!-- Fin de doctor menu -->
+    <!-- Sidebar del paciente -->
+    <sidebar-item ng-if="!vm.doctor()" name="Hacer una cita" icon="fa-address-book-o" state="dashboard.reserva"></sidebar-item>
+    <sidebar-item ng-if="!vm.doctor()" name="Mis citas" icon="fa-folder-open-o" state="dashboard.mis-citas"></sidebar-item>
+    <!-- Fin del sidebar del paciente -->
 </sidebar>
 <div id="wrapper-container">
     <div id="wrapper" ui-view></div>

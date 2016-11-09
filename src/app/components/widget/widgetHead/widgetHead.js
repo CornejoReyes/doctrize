@@ -2,7 +2,6 @@ function widgetHeadController() {
 
     var vm = this;
     vm.visibleHead = vm.visibleHead ? vm.visibleHead : false;
-    console.log(vm.state);
 
 }
 

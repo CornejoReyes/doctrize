@@ -30,7 +30,6 @@ function API(settings, $http, $q) {
                     // $rootScope.$$phase || $rootScope.$apply();
                 })
                 .catch(function(err) {
-                    console.log(err);
                     if (err.data && err.data.msg) {
                         return $q.reject(err.data.msg);
                     } else if (err.status === -1) {

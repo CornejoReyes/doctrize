@@ -1,38 +1,56 @@
-<div class="pagina-principal">
-    <div class="encabezado">
-        {{vm.titulo}}
-    </div>
-    <div class="seleccion">
-        <div class="form" ng-form="form">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
-                    <input ng-model="vm.cita.comentario" type="text" class="form-control" placeholder="Asunto">
+<div class="row margin-top">
+    <div class="col-md-12">
+        <widget>
+            <div class="titulo">
+                {{vm.titulo}}
+            </div>
+            <div class="form-horizontal" ng-form="form">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Asunto</label>
+                    <div class="col-md-10">
+                        <input ng-model="vm.cita.comentario" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Doctor</label>
+                    <div class="col-md-10">
+                        <ui-select required theme="bootstrap" ng-model="vm.cita.doctor_id">
+                            <ui-select-match placeholder="Selecciona un doctor">
+                                <i class="fa fa-user-md fixed"></i> <span ng-bind="$select.selected.nombre + ' ' + $select.selected.apellido_paterno"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="doctor.id as doctor in (vm.doctores | filter: $select.search) track by doctor.id">
+                                <!-- Estas son las opciones que aparecen en la vista-->
+                                <span ng-bind="doctor.nombre + ' ' + doctor.apellido_paterno"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fecha de la cita</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" uib-datepicker-popup ng-model="vm.cita.fecha" datepicker-options="{maxDate: vm.maxDate}" show-weeks="false" ng-focus="vm.dpOpened = !vm.dpOpened" is-open="vm.dpOpened" show-button-bar="false" ng-required="true" name="fecha_programada"
+                            class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="vm.dpOpened = !vm.dpOpened"><i class="fa fa-calendar"></i></button>
+                            </span>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Hora de la cita</label>
+                    <div class="col-md-10">
+                        <div uib-timepicker minute-step="30" ng-model="vm.cita.tiempo"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-primary btn-block" ng-click="vm.reservar()" ng-disabled="form.$invalid"><i class="fa fa-address-book-o"></i> Agendar</button>
+                    </div>
+                    <!--<button class="btn btn-info btn-block" ng-click="vm.logout()"><i class="fa fa-power-off"></i> Salir</button>-->
                 </div>
             </div>
-            <div class="form-group">
-                <ui-select required theme="bootstrap" ng-model="vm.cita.doctor_id">
-                    <ui-select-match placeholder="Selecciona un doctor">
-                        <i class="fa fa-user-md fixed"></i> <span ng-bind="$select.selected.nombre + ' ' + $select.selected.apellido_paterno"></span>
-                    </ui-select-match>
-                    <ui-select-choices repeat="doctor.id as doctor in (vm.doctores | filter: $select.search) track by doctor.id">
-                        <!-- Estas son las opciones que aparecen en la vista-->
-                        <span ng-bind="doctor.nombre + ' ' + doctor.apellido_paterno"></span>
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="vm.dpOpened = !vm.dpOpened"><i class="fa fa-calendar"></i></button>
-                    </span>
-                    <input placeholder="Fecha de la cita" type="text" uib-datepicker-popup ng-model="vm.paciente.fecha_nacimiento" datepicker-options="{maxDate: vm.maxDate}" show-weeks="false" ng-focus="vm.dpOpened = !vm.dpOpened" is-open="vm.dpOpened" show-button-bar="false" ng-required="true" name="fecha_programada"
-                    class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block"><i class="fa fa-address-book-o"></i> Agendar</button>
-            </div>
-        </div>
+
+        </widget>
     </div>
 </div>

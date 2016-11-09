@@ -23,8 +23,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'principalCtrl as vm',
             templateUrl: 'app/views/principal.html'
         })
-        .state('reserva', {
-            url: '/reserva',
+        .state('dashboard.reserva', {
+            url: 'reserva',
             templateUrl: 'app/views/reserva.html',
             controller: 'citaFormCtrl as vm',
             data: {
@@ -35,18 +35,20 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                     return doctor.getAll();
                 }
             },
-            loginRequired: false
+            loginRequired: true,
+            doctor: false
         })
         .state('dashboard', {
             url: '/',
             templateUrl: 'app/views/main.html',
             controller: 'mainCtrl as vm',
-            loginRequired: true
+            loginRequired: true,
         })
         .state('dashboard.general', {
             url: 'general',
             templateUrl: 'app/views/general.html',
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.pacientes', {
             url: 'paciente',
@@ -60,7 +62,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Pacientes'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.paciente-nuevo', {
             url: 'paciente/nuevo',
@@ -69,7 +72,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Paciente > Nuevo'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.paciente-editar', {
             url: 'paciente/{id}',
@@ -78,7 +82,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Paciente > Editar'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.especialidad', {
             url: 'especialidad',
@@ -92,7 +97,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Especialidades'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.especialidad-nuevo', {
             url: 'especialidad/nuevo',
@@ -101,7 +107,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Especialidad > Nuevo'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.especialidad-editar', {
             url: 'especialidad/{id}',
@@ -110,7 +117,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             data: {
                 titulo: 'Especialidad > Editar'
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
         })
         .state('dashboard.citas', {
             url: 'citas',
@@ -120,10 +128,26 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
                 titulo: 'Citas'
             },
             resolve: {
-                _citas: function(cita){
-                    return cita.getAll();
+                _citas: function(doctor){
+                    return doctor.getCitas();
                 }
             },
-            loginRequired: true
+            loginRequired: true,
+            doctor: true
+        })
+        .state('dashboard.mis-citas', {
+            url: 'mis-citas',
+            templateUrl: 'app/views/miscitas.html',
+            controller: 'misCitasCtrl as vm',
+            data:{
+                titulo: 'Mis Citas'
+            },
+            resolve: {
+                _citas: function(paciente){
+                    return paciente.getCitas();
+                }
+            },
+            loginRequired: true,
+            doctor:false
         });
 }

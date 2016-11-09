@@ -4,10 +4,15 @@ function Cita($q, API, toastr) {
     var url = 'cita';
 
     me.init = function(){
+        var defTime = new Date();
+        defTime.setHours(12);
+        defTime.setMinutes(0);
         return {
             paciente_id: null,
             doctor_id: null,
-            fecha_programada: null,
+            fecha: null,
+            hora_reserva: moment().toDate(),
+            tiempo: defTime,
             comentario: null
         };
     };
@@ -32,6 +37,17 @@ function Cita($q, API, toastr) {
             toastr.error(err, 'Error');
             return $q.reject(err);
         });
+    };
+
+    me.reservar = function(cita){
+        return API.post(url,cita)
+        .then(function(res){
+            return $q.resolve(res.data);
+        })
+        .catch(function(err){
+            toastr.error(err,'Error');
+            return $q.reject(err);
+        })
     };
 
 }

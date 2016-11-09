@@ -6,6 +6,7 @@ function Session(API, locker, toastr, $q) {
     me.login = function(user){
         return API.post(url + '/login', user)
         .then(function(res){
+            user.id = res.data.rows;
             locker.put('user', user);
             locker.put('loggedin', true);
             return $q.resolve(res.data);
@@ -27,6 +28,14 @@ function Session(API, locker, toastr, $q) {
     me.isLogged = function(){
         var loged = locker.get('loggedin') || false;
         return loged;
+    };
+
+    me.isDoctor = function(){
+        var user = locker.get('user');
+        if(user.rol == 1){
+            return true;
+        }
+        return false;
     };
 
 }

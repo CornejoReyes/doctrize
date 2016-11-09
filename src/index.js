@@ -1,6 +1,7 @@
 angular.module('app', [
         'ui.router',
         'ui.bootstrap',
+        'ui.calendar',
         'ngAnimate',
         'toastr',
         'angular-locker',
@@ -38,8 +39,20 @@ angular.module('app', [
             if (toState.loginRequired && !session.isLogged()) {
                 event.preventDefault();
                 $rootScope.returnToState = '/' + toState.url;
-                $state.go('login');
+                $state.go('principal');
                 return;
             }
+
+            if(toState.doctor && !session.isDoctor()){
+                event.preventDefault();
+                $rootScope.returnToState = '/' + toState.url;
+                $state.go('dashboard.reserva');
+            }
+
+            if(!toState.doctor && session.isDoctor()){
+                event.preventDefault();
+                $state.go('dashboard.general');
+            }
+
         });
     });

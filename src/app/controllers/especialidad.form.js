@@ -2,7 +2,6 @@ angular.module('app').controller('especialidadFormCtrl', function(especialidad, 
 
     var vm = this;
     var id = $state.params.id;
-    console.log(id);
     vm.titulo = $state.current.data.titulo;
     vm.save = save;
     vm.clean = clean;
@@ -15,7 +14,6 @@ angular.module('app').controller('especialidadFormCtrl', function(especialidad, 
         especialidad.get(id)
         .then(function(res){
             vm.especialidad = res;
-            console.log(vm.especialidad);
         });
     }
 
