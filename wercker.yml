@@ -2,7 +2,6 @@ box: nodesource/trusty
 build:
   steps:
     - npm-install
-    - npm-test
     - script:
         name: echo nodejs information
         code: |
