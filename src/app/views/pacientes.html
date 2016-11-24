@@ -19,6 +19,7 @@
                         <th>Sexo</th>
                         <th>Direccion</th>
                         <th>Teléfono</th>
+                        <th>Expediente</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@
                         <td>{{paciente.sexo | sex}}</td>
                         <td>{{paciente.calle + " " + paciente.colonia + ", " +paciente.municipio}}</td>
                         <td>{{paciente.telefono}}</td>
+                        <td class="text-center"><button uib-tooltip="{{'Expediente'}}" class="btn btn-primary btn-xs" ui-sref="dashboard.expediente({id:paciente.id})"><i class="fa fa-book"></i></button></td>
                     </tr>
                 </tbody>
             </table>

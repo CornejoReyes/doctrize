@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-12">
+        <widget>
+            <div class="titulo">
+                {{vm.titulo}}
+                <div class="tools">
+                    <button class="btn btn-success btn-circle btn-sm" ng-click="vm.reload()"><i class="fa fa-refresh"></i> Recargar</button>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="col-md-6">
+                    <p>
+                        <b>Asunto: </b> {{vm.cita.comentario}}
+                    </p>
+                    <p>
+                        <b>Paciente: </b> {{vm.cita.paciente.nombre + ' ' + vm.cita.paciente.apellido_paterno + ' ' + vm.cita.paciente.apellido_materno}}
+                    </p>
+                </div>
+            </div>
+        </widget>
+    </div>
+</div>

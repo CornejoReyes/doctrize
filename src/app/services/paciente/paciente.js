@@ -16,6 +16,16 @@ function Paciente(API, toastr,$q,locker) {
         };
     }
 
+    me.count = function (){
+        return API.get(url+'/count')
+        .then(function(res){
+            return $q.resolve(res.data.rows);
+        })
+        .catch(function(err){
+            toastr.error(err, 'Error');
+        });
+    }
+
     me.getAll = function(){
         return API.get(url)
         .then(function(res){
@@ -42,7 +52,17 @@ function Paciente(API, toastr,$q,locker) {
         var id = locker.get('user').id;
         return API.get(url + '/' + id + '/citas')
         .then(function(res){
-            return $q.resolve(res.data.rows);
+            return $q.resolve(res.data.rows[0].citas);
+        })
+        .catch(function(err){
+            toastr.error(err,'Error');
+            return $q.reject(err);
+        });
+    };
+    me.getCitasId = function(id){
+        return API.get(url + '/' + id + '/citas')
+        .then(function(res){
+            return $q.resolve(res.data.rows[0].citas);
         })
         .catch(function(err){
             toastr.error(err,'Error');

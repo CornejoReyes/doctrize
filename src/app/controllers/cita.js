@@ -16,27 +16,21 @@ angular.module('app').controller('citaCtrl',function(doctor, _citas, $state){
     }
     function crearCitas(citas){
         citas.forEach(function(c){
-            var y = moment(c.fecha).year();
-            var m = moment(c.fecha).month();
-            var d = moment(c.fecha).date();
-            var h = moment(c.tiempo).hours();
-            var n = moment(c.tiempo).minutes();
-            vm.citas[0].push({title:c.comentario,start:new Date(Date.UTC(y,m,d,h,n,00)),end:new Date(Date.UTC(y,m,d,h,n+30,00))});
+            //vm.citas[0].push({title:c.comentario,start:moment.utc(c.fecha+' '+c.tiempo).utcOffset(-6),end:moment.utc(c.fecha+' '+c.tiempo).utcOffset(-6).add(30,'minutes')});
+            vm.citas[0].push({title:c.comentario,start:moment(c.fecha+' '+c.tiempo),end:moment(c.fecha+' '+c.tiempo).add(30,'minutes'),url: $state.href('dashboard.cita-ver',{id:c.id})});
         });
     }
 
     vm.uiConfig = {
       calendar:{
+          lang:'es',
         height: 500,
         editable: true,
         header:{
           left: 'month agendaWeek agendaDay',
           center: 'title',
           right: 'today prev,next'
-        },
-        eventClick: vm.alertEventOnClick,
-        eventDrop: vm.alertOnDrop,
-        eventResize: vm.alertOnResize
+        }
       }
     };
 

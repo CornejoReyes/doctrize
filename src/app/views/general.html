@@ -1,7 +1,16 @@
 <div class="row margin-top">
     <div class="col-md-12">
-        <widget>
-            Vista general
+        <widget class="clearfix">
+            <div class="col-md-3">
+                <div class="panel-blue">
+                    <i class="fa fa-calendar"></i> Tienes {{vm.countCitas}} citas pendientes.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel-green">
+                    <i class="fa fa-user"></i> Hay {{vm.countPacientes}} pacientes registrados
+                </div>
+            </div>
         </widget>
     </div>
 </div>

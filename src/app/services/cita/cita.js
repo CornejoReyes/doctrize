@@ -1,12 +1,10 @@
-function Cita($q, API, toastr) {
+function Cita($q, API, toastr,locker) {
 
     var me = this;
     var url = 'cita';
 
     me.init = function(){
-        var defTime = new Date();
-        defTime.setHours(12);
-        defTime.setMinutes(0);
+        var defTime = moment().seconds(0).minutes(0).toDate();
         return {
             paciente_id: null,
             doctor_id: null,
@@ -16,6 +14,17 @@ function Cita($q, API, toastr) {
             comentario: null
         };
     };
+
+    me.count = function (){
+        var id = locker.get('user').id;
+        return API.post(url+'/count', {id:id})
+        .then(function(res){
+            return $q.resolve(res.data.rows.rows);
+        })
+        .catch(function(err){
+            toastr.error(err, 'Error');
+        });
+    }
 
     me.getAll = function(){
         return API.get(url)
@@ -40,6 +49,13 @@ function Cita($q, API, toastr) {
     };
 
     me.reservar = function(cita){
+        cita = angular.copy(cita);
+        cita.fecha = moment(cita.fecha).format('YYYY-MM-DD');
+        cita.tiempo = moment(cita.tiempo).format('HH:mm');
+
+        cita.fecha = moment(cita.fecha + ' ' + cita.tiempo).format('YYYY-MM-DD HH:mm');
+
+
         return API.post(url,cita)
         .then(function(res){
             return $q.resolve(res.data);
@@ -47,7 +63,7 @@ function Cita($q, API, toastr) {
         .catch(function(err){
             toastr.error(err,'Error');
             return $q.reject(err);
-        })
+        });
     };
 
 }

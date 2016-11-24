@@ -47,6 +47,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('dashboard.general', {
             url: 'general',
             templateUrl: 'app/views/general.html',
+            controller:'generalCtrl as vm',
             loginRequired: true,
             doctor: true
         })
@@ -149,5 +150,25 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             loginRequired: true,
             doctor:false
+        })
+        .state('dashboard.cita-ver', {
+            url: 'citas/{id}',
+            templateUrl: 'app/views/cita.show.html',
+            controller: 'citaShowCtrl as vm',
+            data: {
+                titulo: 'Cita > Ver'
+            },
+            loginRequired:true,
+            doctor:true
+        })
+        .state('dashboard.expediente', {
+            url: 'expediente/{id}',
+            controller: 'expedientesCtrl as vm',
+            templateUrl: 'app/views/miscitas.html',
+            data: {
+                titulo: 'Expediente'
+            },
+            loginRequired:true,
+            doctor:true
         });
 }
