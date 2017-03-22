@@ -11,7 +11,8 @@ angular
   .module('app')
   .component('navMenuItem', {
     bindings: {
-      icon: '@'
+      icon: '@',
+      tooltip: '@'
     },
     require: {
       parent: '^navMenu'

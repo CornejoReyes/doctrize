@@ -3,19 +3,13 @@
         <i class="fa fa-heartbeat"></i> {{vm.titulo}}
     </div>
     <div class="seleccion animated bounceInRight">
-        <button class="btn btn-primary btn-block" ng-click="vm.cita = !vm.cita" ng-if="!vm.cita"> Hacer una cita</button>
+        <button class="btn btn-success btn-block" ng-click="vm.cita = !vm.cita" ng-if="!vm.cita"> Hacer una cita</button>
         <div ng-class="{'animated fadeIn': vm.cita}" ng-form="form" ng-if="vm.cita">
             <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input required ng-model="vm.paciente.usuario" type="text" class="form-control" placeholder="Nombre de usuario de paciente">
-                </div>
+                <input required ng-model="vm.paciente.usuario" type="text" class="form-control" placeholder="Nombre de usuario de paciente">
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input required ng-model="vm.paciente.contrasena" type="password" class="form-control" placeholder="Contraseña del paciente">
-                </div>
+                <input required ng-model="vm.paciente.contrasena" type="password" class="form-control" placeholder="Contraseña del paciente">
             </div>
             <div class="form-group">
                 <button ng-disabled="form.$invalid" class="btn btn-success btn-block" ng-click="vm.login()">Identifícate</button>

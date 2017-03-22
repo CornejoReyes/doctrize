@@ -1,4 +1,4 @@
-angular.module('app').controller('citaCtrl',function(doctor, _citas, $state){
+angular.module('app').controller('citaCtrl', function(doctor, _citas, $state) {
 
     var vm = this;
     vm.citas = [
@@ -8,30 +8,38 @@ angular.module('app').controller('citaCtrl',function(doctor, _citas, $state){
     vm.titulo = $state.current.data.titulo;
     vm.reload = getCitas;
 
-    function getCitas(){
+    function getCitas() {
         doctor.getCitas()
-        .then(function(res){
-            vm.citas = crearCitas(res);
-        });
+            .then(function(res) {
+                vm.citas = crearCitas(res);
+            });
     }
-    function crearCitas(citas){
-        citas.forEach(function(c){
+
+    function crearCitas(citas) {
+        citas.forEach(function(c) {
             //vm.citas[0].push({title:c.comentario,start:moment.utc(c.fecha+' '+c.tiempo).utcOffset(-6),end:moment.utc(c.fecha+' '+c.tiempo).utcOffset(-6).add(30,'minutes')});
-            vm.citas[0].push({title:c.comentario,start:moment(c.fecha+' '+c.tiempo),end:moment(c.fecha+' '+c.tiempo).add(30,'minutes'),url: $state.href('dashboard.cita-ver',{id:c.id})});
+            vm.citas[0].push({
+                title: c.comentario,
+                start: moment(c.fecha + ' ' + c.tiempo),
+                end: moment(c.fecha + ' ' + c.tiempo).add(30, 'minutes'),
+                url: $state.href('dashboard.cita-ver', {
+                    id: c.id
+                })
+            });
         });
     }
 
     vm.uiConfig = {
-      calendar:{
-          lang:'es',
-        height: 500,
-        editable: true,
-        header:{
-          left: 'month agendaWeek agendaDay',
-          center: 'title',
-          right: 'today prev,next'
+        calendar: {
+            lang: 'es',
+            height: 500,
+            editable: true,
+            header: {
+                left: 'month agendaWeek agendaDay',
+                center: 'title',
+                right: 'today prev,next'
+            }
         }
-      }
     };
 
 });

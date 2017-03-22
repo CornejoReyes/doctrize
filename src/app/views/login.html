@@ -5,16 +5,10 @@
     <div class="seleccion">
         <div ng-form="form">
             <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input required ng-model="vm.doctor.usuario" type="text" class="form-control" placeholder="Nombre de usuario de doctor">
-                </div>
+                <input required ng-model="vm.doctor.usuario" type="text" class="form-control" placeholder="Nombre de usuario de doctor">
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input required ng-model="vm.doctor.contrasena" type="password" class="form-control" placeholder="Contraseña del doctor">
-                </div>
+                <input required ng-model="vm.doctor.contrasena" type="password" class="form-control" placeholder="Contraseña del doctor">
             </div>
             <div class="form-group">
                 <button ng-disabled="form.$invalid" class="btn btn-success btn-block" ng-click="vm.login(vm.doctor)">Identifícate</button>

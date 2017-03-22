@@ -26,7 +26,7 @@ angular.module('app').controller('pacienteFormCtrl', function(paciente, $state, 
         .then(function(res){
             toastr.success(res.data.msg, 'Éxito');
             if(!vm.paciente.id){
-                vm.clear()
+                vm.clean();
             }
         })
         .catch(function(err){
