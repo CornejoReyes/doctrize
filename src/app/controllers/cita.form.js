@@ -1,14 +1,22 @@
-angular.module('app').controller('citaFormCtrl', function(cita, $state, _doctores, locker, toastr, session) {
+angular.module('app').controller('citaFormCtrl', function(cita, $state, _doctores, _pacientes, locker, toastr, session) {
 
     var vm = this;
     var id = $state.params.id;
     vm.titulo = $state.current.data.titulo;
     vm.cita = cita.init();
     vm.doctores = _doctores;
+    vm.pacientes = _pacientes;
     vm.dpOpened = false;
     vm.reservar = reservar;
+    vm.isDoc = session.isDoctor();
     if (id) {
         getCita(id);
+    }
+
+    if (vm.isDoc) {
+        vm.cita.doctor_id = locker.get('user').id;
+    } else {
+        vm.cita.paciente_id = locker.get('user').id;
     }
 
     vm.logout = function() {
@@ -26,7 +34,6 @@ angular.module('app').controller('citaFormCtrl', function(cita, $state, _doctore
     }
 
     function reservar() {
-        vm.cita.paciente_id = locker.get('user').id;
         cita.reservar(vm.cita)
             .then(function(res) {
                 vm.reserved = true;

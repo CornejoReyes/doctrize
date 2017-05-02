@@ -8,10 +8,16 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Asunto</label>
                     <div class="col-md-10">
-                        <input ng-model="vm.cita.comentario" type="text" class="form-control" required>
+                        <input ng-model="vm.cita.comentario" type="text" class="form-control" required placeholder="Escriba su asunto">
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-md-2">Detalles</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" ng-model="vm.cita.descripcion" placeholder="Añada sus síntomas, comentarios, etc." required></textarea>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="!vm.isDoc">
                     <label class="control-label col-md-2">Doctor</label>
                     <div class="col-md-10">
                         <ui-select required theme="bootstrap" ng-model="vm.cita.doctor_id">
@@ -25,12 +31,26 @@
                         </ui-select>
                     </div>
                 </div>
+                <div class="form-group" ng-if="vm.isDoc">
+                    <label class="control-label col-md-2">Paciente</label>
+                    <div class="col-md-10">
+                        <ui-select required theme="bootstrap" ng-model="vm.cita.paciente_id">
+                            <ui-select-match placeholder="Selecciona un paciente">
+                                <i class="fa fa-user fixed"></i> <span ng-bind="$select.selected.nombre + ' ' + $select.selected.apellido_paterno"></span>
+                            </ui-select-match>
+                            <ui-select-choices repeat="paciente.id as paciente in (vm.pacientes | filter: $select.search) track by paciente.id">
+                                <!-- Estas son las opciones que aparecen en la vista-->
+                                <span ng-bind="paciente.nombre + ' ' + paciente.apellido_paterno"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label col-md-2">Fecha de la cita</label>
                     <div class="col-md-10">
                         <div class="input-group">
                             <input type="text" uib-datepicker-popup ng-model="vm.cita.fecha" datepicker-options="{maxDate: vm.maxDate}" show-weeks="false" ng-focus="vm.dpOpened = !vm.dpOpened" is-open="vm.dpOpened" show-button-bar="false" ng-required="true" name="fecha_programada"
-                            class="form-control">
+                            class="form-control" placeholder="Fecha deseada de su cita">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" ng-click="vm.dpOpened = !vm.dpOpened"><i class="fa fa-calendar"></i></button>
                             </span>

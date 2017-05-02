@@ -30,6 +30,10 @@ angular.module('app', [
     })
     .run(function($rootScope, $state, session) {
         $rootScope.$on('$stateChangeStart', function(event, toState) {
+            if (toState.shouldPass && toState.loginRequired && session.isLogged()) {
+                return;
+            }
+
             if (toState.url === '/login' && session.isLogged()) {
                 event.preventDefault();
                 $state.go('dashboard.general');
@@ -42,6 +46,7 @@ angular.module('app', [
                 $state.go('principal');
                 return;
             }
+
 
             if(toState.doctor && !session.isDoctor()){
                 event.preventDefault();

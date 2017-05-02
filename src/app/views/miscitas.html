@@ -11,6 +11,7 @@
                         <th>Asunto</th>
                         <th>Doctor</th>
                         <th>Fecha</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,6 +20,11 @@
                         <td>{{cita.comentario}}</td>
                         <td>{{cita.doctor.nombre}}</td>
                         <td>{{cita.fecha}}</td>
+                        <td class="text-center">
+                            <span class="label label-success" ng-if="cita.estado_id === 3">Terminada</span>
+                            <span class="label label-primary" ng-if="cita.estado_id === 1">Pendiente</span>
+                            <span class="label label-danger" ng-if="cita.estado_id === 2">Cancelada</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

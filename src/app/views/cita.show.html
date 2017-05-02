@@ -7,14 +7,99 @@
                     <button class="btn btn-success btn-circle " ng-click="vm.reload()"><i class="fa fa-refresh"></i> Recargar</button>
                 </div>
             </div>
-            <div class="clearfix">
+            <h4>Datos previos</h4>
+            <div class="row">
                 <div class="col-md-6">
-                    <p>
-                        <b>Asunto: </b> {{vm.cita.comentario}}
-                    </p>
-                    <p>
-                        <b>Paciente: </b> {{vm.cita.paciente.nombre + ' ' + vm.cita.paciente.apellido_paterno + ' ' + vm.cita.paciente.apellido_materno}}
-                    </p>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <b>Asunto:</b>
+                        </div>
+                        <div class="col-md-10">
+                            {{vm.cita.comentario}}
+                        </div>
+                        <div class="col-md-2">
+                            <b>Detalles:</b>
+                        </div>
+                        <div class="col-md-10">
+                            {{vm.cita.descripcion}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-2">
+                        <b>Datos del paciente:</b>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row form-horizontal">
+                            <div class="col-md-2"><b>Nombre:</b></div>
+                            <div class="col-md-10">{{vm.cita.paciente.nombre + ' ' + vm.cita.paciente.apellido_paterno}}</div>
+                            <div class="col-md-2"><b>Edad:</b></div>
+                            <div class="col-md-10">{{vm.cita.paciente.fecha_nacimiento | age}}</div>
+                            <div class="col-md-2"><b>Peso:</b></div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" ng-model="vm.cita.paciente.datos.peso" ng-disabled="!vm.editable">
+                            </div>
+                            <div class="col-md-2"><b>Altura:</b></div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" ng-model="vm.cita.paciente.datos.altura" ng-disabled="!vm.editable">
+                            </div>
+                            <div class="col-md-2"><b>Presión:</b></div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" ng-model="vm.cita.paciente.datos.presion" ng-disabled="!vm.editable">
+                            </div>
+                            <div class="col-md-2"><b>Alergias:</b></div>
+                            <div class="col-md-10">
+                                <textarea class="form-control" ng-model="vm.cita.paciente.datos.alergia" ng-disabled="!vm.editable"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button uib-tooltip="Editar" class="btn btn-primary" ng-show="!vm.finished && !vm.editable" ng-click="vm.editable = true"><i class="fa fa-pencil"></i></button>
+                        <button uib-tooltip="Guardar" class="btn btn-primary" ng-show="!vm.finished && vm.editable" ng-click="vm.editUserData()"><i class="fa fa-check"></i></button>
+                        <button uib-tooltip="Expediente" class="btn btn-primary" ui-sref="dashboard.expediente({id: vm.cita.paciente.id})"><i class="fa fa-book"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h4>Receta y anotaciones</h4>
+            <div class="row" ng-form="form" ng-if="!vm.finished">
+                <div class="col-md-12 form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <b>Receta:</b>
+                        </div>
+                        <div class="col-md-10">
+                            <textarea class="form-control" placeholder="Escriba la receta" required ng-model="vm.receta"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <b>Comentarios:</b>
+                        </div>
+                        <div class="col-md-10">
+                            <textarea class="form-control" placeholder="Escriba los comentarios" ng-model="vm.comentario_doctor"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg pull-right" ng-disabled="form.$invalid" ng-click="vm.update()" ng-if="vm.canSave">Guardar</button>
+                    <h4 class="text-right" ng-if="!vm.canSave">No se ha llegado la fecha de la cita</h4>
+                </div>
+            </div>
+            <div class="row" ng-if="vm.finished">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <b>Receta:</b>
+                        </div>
+                        <div class="col-md-10">
+                            <p>{{vm.receta}}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Comentarios:</b>
+                        </div>
+                        <div class="col-md-10">
+                            <p>{{vm.comentario_doctor}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </widget>

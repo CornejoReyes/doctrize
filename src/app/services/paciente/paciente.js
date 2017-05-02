@@ -86,6 +86,17 @@ function Paciente(API, toastr,$q,locker) {
         }
     };
 
+    me.editUserData = function(id, data) {
+        return API.post(url + '/' + id + '/data', data)
+        .then(function(res) {
+            return $q.resolve(res.data);
+        })
+        .catch(function(err) {
+            toastr.error(err, 'Error');
+            return $q.reject(err);
+        });
+    };
+
 }
 
 

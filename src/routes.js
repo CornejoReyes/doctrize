@@ -33,10 +33,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             resolve: {
                 _doctores: function(doctor){
                     return doctor.getAll();
+                },
+                _pacientes: function (paciente) {
+                    return paciente.getAll();
                 }
             },
             loginRequired: true,
-            doctor: false
+            shouldPass: true
         })
         .state('dashboard', {
             url: '/',

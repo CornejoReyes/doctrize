@@ -66,6 +66,17 @@ function Cita($q, API, toastr,locker) {
         });
     };
 
+    me.update = function(id, receta, comentario) {
+        return API.post(url + '/' + id + '/update', {receta: receta, comentario_doctor: comentario})
+        .then(function(res) {
+            return $q.resolve(res.data);
+        })
+        .catch(function(err) {
+            toastr.error(err, 'Error');
+            return $q.reject(err);
+        });
+    };
+
 }
 
 angular
