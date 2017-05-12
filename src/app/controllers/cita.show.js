@@ -5,10 +5,12 @@ angular.module('app').controller('citaShowCtrl',function(cita, $state, toastr, p
     vm.titulo = $state.current.data.titulo;
     vm.update = update;
     vm.editUserData = editUserData;
+    vm.cancel = cancel;
     vm.comentario_doctor = '';
     vm.receta = '';
     vm.finished = false;
     vm.editable = false;
+    vm.canceled = false;
 
     if(id){
         get(id);
@@ -23,6 +25,8 @@ angular.module('app').controller('citaShowCtrl',function(cita, $state, toastr, p
                 vm.receta = vm.cita.receta.receta;
                 vm.comentario_doctor = vm.cita.comentario_doctor;
                 vm.finished = true;
+            } else if(vm.cita.estado_id === 2){
+                vm.canceled = true;
             }
             vm.canSave = canSave();
         });
@@ -49,5 +53,13 @@ angular.module('app').controller('citaShowCtrl',function(cita, $state, toastr, p
             return true;
         }
         return false;
+    }
+
+    function cancel() {
+        cita.cancel(id)
+        .then(function(res) {
+            vm.canceled = true;
+            toastr.success(res.msg, 'Completado');
+        });
     }
 });

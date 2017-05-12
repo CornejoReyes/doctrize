@@ -4,7 +4,8 @@
             <div class="titulo">
                 {{vm.titulo}}
                 <div class="tools">
-                    <button class="btn btn-success btn-circle " ng-click="vm.reload()"><i class="fa fa-refresh"></i> Recargar</button>
+                    <button class="btn btn-success btn-circle" ng-click="vm.reload()" uib-tooltip="Recargar"><i class="fa fa-refresh"></i></button>
+                    <button class="btn btn-danger btn-circle" ng-click="vm.cancel()" ng-if="!vm.canceled" uib-tooltip="Cancelar"><i class="fa fa-ban"></i></button>
                 </div>
             </div>
             <h4>Datos previos</h4>

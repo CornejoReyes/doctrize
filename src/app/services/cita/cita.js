@@ -77,6 +77,17 @@ function Cita($q, API, toastr,locker) {
         });
     };
 
+    me.cancel = function(id) {
+        return API.post(url + '/' + id + '/cancel')
+        .then(function(res) {
+            return $q.resolve(res.data);
+        })
+        .catch(function(err) {
+            toastr.error(err, 'Error');
+            return $q.reject(err);
+        })
+    };
+
 }
 
 angular

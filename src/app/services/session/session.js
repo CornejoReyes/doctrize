@@ -32,7 +32,7 @@ function Session(API, locker, toastr, $q) {
 
     me.isDoctor = function(){
         var user = locker.get('user');
-        if(user.rol == 1){
+        if(user && user.rol == 1){
             return true;
         }
         return false;
