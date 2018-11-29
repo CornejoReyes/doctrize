@@ -69,6 +69,41 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             loginRequired: true,
             doctor: true
         })
+        .state('dashboard.proveedores', {
+            url: 'proveedor',
+            templateUrl: 'app/views/proveedor.html',
+            controller: 'proveedorCtrl as vm',
+            resolve: {
+                _proveedores: function(proveedor) {
+                    return proveedor.getAll();
+                }
+            },
+            data: {
+                titulo: 'Proveedores'
+            },
+            loginRequired: true,
+            doctor: true
+        })
+        .state('dashboard.proveedor-nuevo', {
+            url: 'proveedor/nuevo',
+            controller: 'proveedorFormCtrl as vm',
+            templateUrl: 'app/views/proveedor.form.html',
+            data: {
+                titulo: 'Proveedor > Nuevo'
+            },
+            loginRequired: true,
+            doctor: true
+        })
+        .state('dashboard.proveedor-editar', {
+            url: 'proveedor/{id}',
+            controller: 'proveedorFormCtrl as vm',
+            templateUrl: 'app/views/proveedor.form.html',
+            data: {
+                titulo: 'Proveedor > Editar'
+            },
+            loginRequired: true,
+            doctor: true
+        })
         .state('dashboard.paciente-nuevo', {
             url: 'paciente/nuevo',
             controller: 'pacienteFormCtrl as vm',

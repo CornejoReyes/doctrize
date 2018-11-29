@@ -1,0 +1,47 @@
+<div class="row margin-top">
+	<div class="col-md-12">
+		<widget>
+			<div class="titulo">
+				{{vm.titulo}}
+				<div class="tools">
+					<button class="btn btn-info btn-circle " ui-sref="dashboard.proveedores"><i class="fa fa-list"></i> Lista</button>
+				</div>
+			</div>
+			<form class="form-horizontal margin-top" name="form" novalidate>
+				<div class="form-group">
+					<label class="control-label col-md-3">Nombre</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.proveedor.nombre">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Dirección</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.proveedor.direccion">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Teléfono</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.proveedor.telefono">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-3">Email</label>
+					<div class="col-md-9">
+						<input required type="text" class="form-control" ng-model="vm.proveedor.email">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-3">
+						<button ng-if="!vm.proveedor.id" ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-user"></i> Añadir</button>
+						<button ng-if="vm.proveedor.id" ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="vm.save()"><i class="fa fa-refresh"></i> Actualizar</button>
+					</div>
+					<div class="col-md-3">
+						<button class="btn btn-warning btn-block" ng-click="vm.clean()"><i class="fa fa-times"></i> Limpiar</button>
+					</div>
+				</div>
+			</form>
+		</widget>
+	</div>
+</div>
